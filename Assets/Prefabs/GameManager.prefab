@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8393730841400075398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8393730841400075384}
+  - component: {fileID: 8393730841400075399}
+  - component: {fileID: 8393730841400075385}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8393730841400075384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393730841400075398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8393730841400075399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393730841400075398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143179bf88cf17b429658723049b5342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8393730841400075385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393730841400075398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5eeba9aa4f55f439e20423b3be9ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  corridorRoom: {fileID: 4896375328923269157, guid: 8d22ccc7804b5344fb8aaa016676d388,
+    type: 3}
+  bottomRoom: {fileID: 5758454650116902735, guid: 67c52434cda37c44ab0e10be94ef9547,
+    type: 3}
+  topRoom: {fileID: 2966059013885885272, guid: 833113619f69cab4c8104cc320f09209, type: 3}
+  uniformRoom: {fileID: 1372421267222108227, guid: 7c5b25e353edaea4dbeddb74bfb9a780,
+    type: 3}
+  roomHeight: 6
+  roomWidth: 8
+  rows: 3
+  columns: 3

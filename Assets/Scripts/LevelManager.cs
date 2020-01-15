@@ -20,8 +20,8 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private int roomWidth = 8;
 
 	[Header("Board properties")]
-	[SerializeField] private int rows = 4;
-	[SerializeField] private int columns = 4;
+	[SerializeField] private int rows = 3;
+	[SerializeField] private int columns = 3;
 
 	private int _startColumn = 0;
 	private bool _hasPath = false;
@@ -120,11 +120,6 @@ public class LevelManager : MonoBehaviour
 
 		if (targetPos.y < currentPos.y)
 		{
-			// if (targetPos.y == 0 - roomHeight)
-			// {
-			// 	return RoomType.Exit;
-			// }
-
 			if (currentPos.y == lastPos.y)
 			{
 				return topRoom;
@@ -136,7 +131,6 @@ public class LevelManager : MonoBehaviour
 			}
 		}
 
-		Debug.Log("Reached bottom");
 		return uniformRoom;
 	}
 
