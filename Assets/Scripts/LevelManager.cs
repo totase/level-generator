@@ -238,9 +238,9 @@ public class LevelManager : MonoBehaviour
 		// Create a new level holder to keep hierarchy organized
 		_levelHolder = new GameObject("Level").transform;
 
-		// Multiply room width by columns to get correct values for x 
+		// Multiply room width by columns to get correct values
 		columns = roomWidth * columns;
-		// Do the same with the room height for y values
+		// Do the same with the room height
 		rows = roomHeight * rows;
 
 		// Set up grid with new column and row values --
