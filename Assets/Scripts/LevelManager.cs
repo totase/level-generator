@@ -33,6 +33,7 @@ public class LevelManager : MonoBehaviour
 	{
 		_gridPositions.Clear();
 
+		// Create list of positions for rooms
 		for (int x = 0; x < columns; x += roomWidth)
 		{
 			for (int y = 0; y < rows; y += roomHeight)
@@ -47,15 +48,17 @@ public class LevelManager : MonoBehaviour
 		_gridPositions.Remove(position);
 	}
 
+	// Function to get the position for a new room based on current direction
 	Vector3 GetRoomPosition(int direction, Vector3 currentPos)
 	{
 		Vector3 _targetPos = Vector3.zero;
 
 		switch (direction)
 		{
-		case 1:
+		case 1: // Left
 			if (currentPos.x == 0)
 			{
+				// If current position is 0 (on level edge), move down instead
 				_targetPos.Set(currentPos.x, currentPos.y - roomHeight, 0f);
 			}
 			else
@@ -64,9 +67,10 @@ public class LevelManager : MonoBehaviour
 			}
 
 			break;
-		case 2:
+		case 2: // Right
 			if (currentPos.x == columns - roomWidth)
 			{
+				// If current position is the same as column value (on level edge), move down instead
 				_targetPos.Set(currentPos.x, currentPos.y - roomHeight, 0f);
 			}
 			else
@@ -75,7 +79,7 @@ public class LevelManager : MonoBehaviour
 			}
 
 			break;
-		case 3:
+		case 3: // Down
 			_targetPos.Set(currentPos.x, currentPos.y - roomHeight, 0f);
 			break;
 		}
@@ -83,6 +87,7 @@ public class LevelManager : MonoBehaviour
 		return _targetPos;
 	}
 
+	// Function to get a new random direction
 	int GetRandomDirection()
 	{
 		int _targetDirection = Random.Range(1, 6);
@@ -91,21 +96,19 @@ public class LevelManager : MonoBehaviour
 		{
 		case 1:
 		case 2:
-			// Move left
-			return 1;
+			return 1; // Left
 		case 3:
 		case 4:
-			// Move right
-			return 2;
+			return 2; // Right
 		case 5:
-			// Move down
-			return 3;
+			return 3; // Down
 		default:
 			Debug.LogError("Direction not found: " + _targetDirection);
 			return 0;
 		}
 	}
 
+	// Function to get a room type to instantiate, based on last, current, and target (next) position
 	GameObject GetRoomType(Vector3 lastPos, Vector3 currentPos, Vector3 targetPos)
 	{
 		if (targetPos.y == currentPos.y)
@@ -134,11 +137,12 @@ public class LevelManager : MonoBehaviour
 		return uniformRoom;
 	}
 
-	IEnumerator LevelSetup()
+	void LevelSetup()
 	{
 		bool _hasEntrance = false;
 
 		int _currentDir = 0;
+		// Position to start room instantiation 
 		float _startRow = rows - roomHeight;
 
 		Vector3 _lastPos = new Vector3();
@@ -206,7 +210,6 @@ public class LevelManager : MonoBehaviour
 				_toInstantiate = GetRoomType(_lastPos, _currentPos, _targetPos);
 			}
 
-			yield return new WaitForSeconds(0f);
 			GenerateRoom(_toInstantiate, _currentPos);
 
 			_lastPos = _currentPos;
@@ -216,6 +219,8 @@ public class LevelManager : MonoBehaviour
 		FinishSetup();
 	}
 
+	// Function to instantiate a room on a given position
+	// -- will also set the level object as a parent
 	void GenerateRoom(GameObject room, Vector3 pos)
 	{
 		GameObject _currentRoom;
@@ -227,18 +232,27 @@ public class LevelManager : MonoBehaviour
 
 	public void SetupScene()
 	{
+		// Get a random column to start on
 		_startColumn = Random.Range(0, columns) * roomWidth;
+
+		// Create a new level holder to keep hierarchy organized
 		_levelHolder = new GameObject("Level").transform;
 
+		// Multiply room width by columns to get correct values for x 
 		columns = roomWidth * columns;
+		// Do the same with the room height for y values
 		rows = roomHeight * rows;
-		InitialiseGrid();
 
-		StartCoroutine(LevelSetup());
+		// Set up grid with new column and row values --
+		InitialiseGrid();
+		// -- and set up the level
+		LevelSetup();
 	}
 
 	void FinishSetup()
 	{
 		// Add side rooms
+
+		GameManager.instance.FinishSetup();
 	}
 }

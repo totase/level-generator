@@ -33,4 +33,9 @@ public class GameManager : MonoBehaviour
 	{
 		_levelManager.SetupScene();
 	}
+
+	public void FinishSetup()
+	{
+		_doingSetup = false;
+	}
 }
