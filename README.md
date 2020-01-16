@@ -14,7 +14,7 @@ The position for each room will be calculated by the `roomHeight` and `roomWidth
 
 _Note_: Since the rooms in this repository is static sprites, editing these variables will produce gaps between each rooms.
 
-### Demo
+## Demo
 
 In the demo below, level are generated on a 3x3 grid, with 6x8 rooms.
 
